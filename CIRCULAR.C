@@ -9,6 +9,7 @@ struct xyz
 node*temp;
 node*last=NULL;
 node*ins;
+node*erase;
 int count=0;
 void add()
 {
@@ -45,7 +46,49 @@ void disp()
 }
 void del()
 {
-}
+   if(last==NULL)
+   {
+       printf("\n Record not found");
+   }
+   else
+   {
+       int dv,flag=0;
+       printf("\n Enter value for delete:");
+       scanf("%d",&dv);
+       do
+       {
+	  if(temp->next->data==dv)
+	  {
+	      erase=temp->next;
+	      temp->next=erase->next;
+	      flag=1;
+	      if(erase==last)
+	      {
+		 if(temp==last)
+		 {
+		       last=NULL;
+		       break;
+		 }
+		 else
+		 {
+		      last=temp;
+
+		 }
+	      }
+	   }
+	       temp=temp->next;
+       } while(temp!=last);
+	  if(flag==0)
+	       printf("\n value %d not found",dv);
+	  else
+	  {
+	      printf("\n value deleted...");
+	      free(erase);
+	      count--;
+	  }
+       }
+   }
+
 void main()
 {
    int ch;
